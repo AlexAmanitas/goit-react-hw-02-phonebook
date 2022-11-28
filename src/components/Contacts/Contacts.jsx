@@ -1,7 +1,15 @@
-const ContactList = props => {
+import PropTypes from 'prop-types';
+import {
+  ContactList,
+  ContactListItem,
+  ContactName,
+  ContactNumber,
+  DeleteButton,
+} from './Contacts.styled';
+
+const Contacts = props => {
   const { data, filter } = props;
   let filterData = data.filter(el => {
-    console.log(filter, el.name.includes(filter));
     return el.name.toLowerCase().includes(filter);
   });
 
@@ -11,21 +19,33 @@ const ContactList = props => {
 
   if (!filterData.length) return;
   return (
-    <ul>
+    <ContactList>
       {filterData.map(el => {
         const { name, number, id } = el;
         return (
-          <li key={id}>
-            <p>{name}</p>
-            <p>{number}</p>
-            <button id={id} type="button" onClick={handleOnClick}>
+          <ContactListItem key={id}>
+            <ContactName>{name}</ContactName>
+            <ContactNumber>{number}</ContactNumber>
+            <DeleteButton id={id} type="button" onClick={handleOnClick}>
               Delete
-            </button>
-          </li>
+            </DeleteButton>
+          </ContactListItem>
         );
       })}
-    </ul>
+    </ContactList>
   );
 };
 
-export default ContactList;
+export default Contacts;
+
+Contacts.propTypes = {
+  props: PropTypes.shape({
+    onDelete: PropTypes.func.isRequired,
+    data: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    }),
+    filter: PropTypes.string.isRequired,
+  }),
+};

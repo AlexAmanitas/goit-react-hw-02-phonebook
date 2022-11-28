@@ -1,3 +1,6 @@
+import PropTypes from 'prop-types';
+import { FilterBox, Label, Input } from './Filter.styled';
+
 const Filter = props => {
   let filter;
 
@@ -8,11 +11,17 @@ const Filter = props => {
   };
 
   return (
-    <label htmlFor="">
-      Find contacts by name
-      <input type="text" value={filter} onChange={handleChange} />
-    </label>
+    <FilterBox>
+      <Label htmlFor="filter">Find contacts by name</Label>
+      <Input id="filter" type="text" value={filter} onChange={handleChange} />
+    </FilterBox>
   );
 };
 
 export default Filter;
+
+Filter.propTypes = {
+  props: PropTypes.shape({
+    onChange: PropTypes.func.isRequired,
+  }),
+};
