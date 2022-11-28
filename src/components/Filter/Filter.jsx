@@ -1,30 +1,18 @@
-import React, { Component } from 'react';
+const Filter = props => {
+  let filter;
 
-export default class Filter extends Component {
-  constructor() {
-    super();
-    this.state = {
-      search: '',
-    };
-  }
+  const handleChange = evt => {
+    filter = evt.currentTarget.value;
 
-  handleChange = evt => {
-    this.setState({ search: evt.currentTarget.value });
-    this.props.onChange(this.state);
+    props.onChange(filter);
   };
 
-  render() {
-    return (
-      <>
-        <label htmlFor="">
-          Find contacts by name
-          <input
-            type="text"
-            value={this.state.search}
-            onChange={this.handleChange}
-          />
-        </label>
-      </>
-    );
-  }
-}
+  return (
+    <label htmlFor="">
+      Find contacts by name
+      <input type="text" value={filter} onChange={handleChange} />
+    </label>
+  );
+};
+
+export default Filter;

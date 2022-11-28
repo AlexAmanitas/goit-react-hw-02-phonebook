@@ -12,34 +12,48 @@ export class App extends Component {
         { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
         { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
         { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+        { id: 'id-5', name: 'Edem Cldfmts', number: '645-17-79' },
+        { id: 'id-6', name: 'Alec Mjduels', number: '645-17-79' },
+        { id: 'id-7', name: 'Karl Fridr', number: '645-17-79' },
+        { id: 'id-8', name: 'Joiur Masuro', number: '645-17-79' },
       ],
-      name: '',
-      number: '',
       filter: '',
     };
   }
 
   formSubmitHandler = data => {
+    this.state.contacts.map(el => {
+      if (el.name.toLowerCase() === data.name.toLowerCase()) {
+        alert(`${data.name} is already in contacts.`);
+      }
+      return el.name;
+    });
     this.setState({ contacts: [...this.state.contacts, data] });
   };
 
   handleChangeFilter = data => {
-    console.log(data.search);
-    this.setState({ filter: data.search });
-    this.state.contacts.filter(el => {
-      console.log(el.name, el.name.includes(data.search));
-      return el.name.includes(data.search);
+    this.setState({ filter: data });
+  };
+
+  handleClickDelete = data => {
+    console.log(data);
+    this.setState({
+      contacts: this.state.contacts.filter(el => el.id !== data),
     });
-    console.log(this.state.contacts);
   };
 
   render() {
     return (
       <div>
+        <h2>Phonebook</h2>
         <Form onSubmit={this.formSubmitHandler} />
         <h2>Contacts</h2>
         <Filter onChange={this.handleChangeFilter} />
-        <ContactList data={this.state.contacts} />
+        <ContactList
+          onDelete={this.handleClickDelete}
+          data={this.state.contacts}
+          filter={this.state.filter}
+        />
       </div>
     );
   }

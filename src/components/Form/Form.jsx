@@ -20,9 +20,7 @@ export default class Form extends Component {
 
   handleSubmit = evt => {
     evt.preventDefault();
-    this.setState(prevState => {
-      return { id: `id-${this.i + 1}` };
-    });
+    this.setState({ id: `id-${this.i + 1}` });
     this.props.onSubmit(this.state);
 
     this.resetForm();
