@@ -4,7 +4,6 @@ import { FilterBox, Label, Input } from './Filter.styled';
 const Filter = ({ onChange, filter }) => {
   const handleChange = evt => {
     filter = evt.currentTarget.value;
-
     onChange(filter);
   };
 
@@ -19,7 +18,6 @@ const Filter = ({ onChange, filter }) => {
 export default Filter;
 
 Filter.propTypes = {
-  props: PropTypes.shape({
-    onChange: PropTypes.func.isRequired,
-  }),
+  onChange: PropTypes.func.isRequired,
+  filter: PropTypes.string,
 };

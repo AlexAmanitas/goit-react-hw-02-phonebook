@@ -10,8 +10,6 @@ const Contacts = ({ data, filter, onDelete }) => {
   const handleOnClick = evt => {
     onDelete(evt);
   };
-
-  if (filterData.length === 0) return;
   return (
     <ContactList>
       {filterData.map(({ name, number, id }) => {
@@ -34,13 +32,13 @@ const Contacts = ({ data, filter, onDelete }) => {
 export default Contacts;
 
 Contacts.propTypes = {
-  props: PropTypes.shape({
-    onDelete: PropTypes.func.isRequired,
-    data: PropTypes.shape({
+  onDelete: PropTypes.func.isRequired,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       number: PropTypes.string.isRequired,
-    }),
-    filter: PropTypes.string.isRequired,
-  }),
+    }).isRequired
+  ).isRequired,
+  filter: PropTypes.string,
 };
