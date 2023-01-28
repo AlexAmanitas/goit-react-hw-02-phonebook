@@ -1,35 +1,30 @@
+import ContactsListItem from 'components/ContactsItem';
 import PropTypes from 'prop-types';
-import {
-  ContactList,
-  ContactListItem,
-  ContactName,
-  ContactNumber,
-  DeleteButton,
-} from './Contacts.styled';
+import { ContactList } from './Contacts.styled';
 
-const Contacts = props => {
-  const { data, filter } = props;
-  let filterData = data.filter(el => {
+const Contacts = ({ data, filter, onDelete }) => {
+  const filterData = data.filter(el => {
     return el.name.toLowerCase().includes(filter);
   });
 
   const handleOnClick = evt => {
-    props.onDelete(evt.currentTarget.id);
+    onDelete(evt);
   };
 
-  if (!filterData.length) return;
+  if (filterData.length === 0) return;
   return (
     <ContactList>
-      {filterData.map(el => {
-        const { name, number, id } = el;
+      {filterData.map(({ name, number, id }) => {
+        console.log(id, name, number);
+
         return (
-          <ContactListItem key={id}>
-            <ContactName>{name}</ContactName>
-            <ContactNumber>{number}</ContactNumber>
-            <DeleteButton id={id} type="button" onClick={handleOnClick}>
-              Delete
-            </DeleteButton>
-          </ContactListItem>
+          <ContactsListItem
+            key={id}
+            id={id}
+            name={name}
+            number={number}
+            onDelete={handleOnClick}
+          />
         );
       })}
     </ContactList>

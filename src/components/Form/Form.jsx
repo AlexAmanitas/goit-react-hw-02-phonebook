@@ -1,27 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { TheForm, Label, Input, SubmitBtn } from './Form.styled';
+import uniqid from 'uniqid';
 
 export default class Form extends Component {
-  constructor() {
-    super();
-    this.state = {
-      id: 'id-1',
-      name: '',
-      number: '',
-    };
-    this.i = 1;
-  }
+  state = {
+    id: uniqid(),
+    name: '',
+    number: '',
+  };
 
   handleChange = evt => {
     const { name, value } = evt.currentTarget;
     this.setState({ [name]: value });
-    console.log(value);
   };
 
   handleSubmit = evt => {
     evt.preventDefault();
-    this.setState({ id: `id-${this.i + 1}` });
+    this.setState({ id: uniqid() });
     this.props.onSubmit(this.state);
 
     this.resetForm();
