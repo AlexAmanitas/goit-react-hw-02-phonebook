@@ -4,7 +4,7 @@ import { ContactList } from './Contacts.styled';
 
 const Contacts = ({ data, filter, onDelete }) => {
   const filterData = data.filter(el => {
-    return el.name.toLowerCase().includes(filter);
+    return el.name.toLowerCase().includes(filter.toLowerCase());
   });
 
   const handleOnClick = evt => {
