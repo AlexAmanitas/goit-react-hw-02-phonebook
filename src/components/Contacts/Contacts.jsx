@@ -13,8 +13,6 @@ const Contacts = ({ data, filter, onDelete }) => {
   return (
     <ContactList>
       {filterData.map(({ name, number, id }) => {
-        console.log(id, name, number);
-
         return (
           <ContactsListItem
             key={id}

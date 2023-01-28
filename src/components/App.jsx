@@ -26,14 +26,12 @@ export class App extends Component {
   };
 
   handleClickDelete = data => {
-    console.log(data);
     this.setState({
       contacts: this.state.contacts.filter(el => el.id !== data),
     });
   };
 
   render() {
-    console.log(this.state.contacts);
     return (
       <div>
         <h2 style={{ color: '#ff6c00' }}>Phonebook</h2>
