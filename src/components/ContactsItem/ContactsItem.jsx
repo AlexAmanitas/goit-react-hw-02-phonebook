@@ -7,8 +7,6 @@ import {
 } from './ContactsItem.styled';
 
 const ContactsListItem = ({ id, name, number, onDelete }) => {
-  // console.log(onDelete, id, name, number);
-
   const handleDeleteClick = evt => {
     onDelete(evt.target.id);
   };

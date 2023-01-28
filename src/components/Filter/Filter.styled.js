@@ -20,6 +20,7 @@ export const Input = styled.input`
   border-radius: 5px;
 
   &:focus-visible {
-    outline: 1px solid #4b98f5;
+    outline: 1px solid #ff6c00;
+    border: 1px solid #fff;
   }
 `;

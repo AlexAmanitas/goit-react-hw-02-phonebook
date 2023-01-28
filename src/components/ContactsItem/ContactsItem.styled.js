@@ -22,13 +22,13 @@ export const DeleteButton = styled.button`
   font-weight: 600;
   border-radius: 5px;
   border: none;
-  background-color: #ddd;
-  color: #333;
+  background-color: #fff;
+  color: #ff6c00;
   cursor: pointer;
   transition: background-color 300ms linear, color 300ms linear;
 
   &:hover {
-    background-color: #4b98f5;
+    background-color: #ff6c00;
     color: #eee;
   }
 `;
