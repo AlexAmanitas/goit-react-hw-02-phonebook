@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { TheForm, Label, Input, SubmitBtn } from './Form.styled';
+import uniqid from 'uniqid';
 
 export default class Form extends Component {
   state = {
@@ -15,7 +16,7 @@ export default class Form extends Component {
 
   handleSubmit = evt => {
     evt.preventDefault();
-    this.props.onSubmit(this.state);
+    this.props.onSubmit({ ...this.state, id: uniqid() });
 
     this.resetForm();
   };
